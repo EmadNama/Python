@@ -116,12 +116,42 @@ if number3>number1 and number3<number2:
     print(f"The middle number is {number3}")
 '''
 
+
+'''
+if n1>n2 and n1>n3:
+    max=n1
+elif n2>n1 and n2>n3:
+    max=n2
+else:
+    max=n3
+if n1<n2 and n1<n3:
+    min=n1
+elif n2<n1 and n2<n3:
+    min=n2
+else:
+    min=n3
+
+'''
 n1=int(input("Put the first number: "))
 n2=int(input("Put the second number: "))
 n3=int(input("Put the third number: "))
 
-if n1>n2 and n1>3:
+if n1>n2 and n1>n3:
     max=n1
 elif n2>n1 and n2>n3:
     max=n2
-else: max=n3
+else:
+    max=n3
+if n1<n2 and n1<n3:
+    min=n1
+elif n2<n1 and n2<n3:
+    min=n2
+else:
+    min=n3
+if min<n1<max:
+    mid=n1
+elif min<n2<max:
+    mid=n2
+else:
+    mid=n3
+print(f"Biggest is {max}, mid is {mid}, Smallest is {min}")

@@ -2,7 +2,7 @@
 name=input("Please enter a name:")
 print(name[0], name[-1])
 print(name[1:3])
-print("Hello"+'/n'"My name is Emad")
+print("Hello My name is Emad")
 print(name[1:])
 print(len(name))
 
