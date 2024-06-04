@@ -64,7 +64,7 @@ if num%2==0:
 else: print("The number is odd")
 
 '''
-
+'''
 threedigits=int(input("Put a three digits number: "))
 if not 100<=threedigits<=999:
     print("Bye bye!")
@@ -81,3 +81,47 @@ if 100<=threedigits<=999:
     if digit1+digit3<digit2:
         print("The first digit and last digit sum is less than the middle digit")
     else:print(f"the first digit and last digit sum is more than the middle digit and their multiplication is {digit1*digit3}")
+'''
+
+
+'''
+number1=int(input("Put the first number: "))
+number2=int(input("Put the second number: "))
+number3=int(input("Put the third number: "))
+
+
+if number1>number2 and number1>number3:
+    print(f"The biggest number is {number1}")
+if number2>number1 and number2>number3:
+    print(f"The biggest number is {number2}")
+if number3>number1 and number3>number2:
+    print(f"The biggest number is {number3}")
+    
+    
+    
+if number1<number2 and number1<number3:
+    print(f"The smallest number is {number1}")
+if number2<number1 and number2<number3:
+    print(f"The smallest number is {number2}")
+if number3<number1 and number3<number2:
+    print(f"The smallest number is {number3}")
+    
+    
+    
+if number1>number2 and number1<number3:
+    print(f"The middle number is {number1}")
+if number2>number1 and number2<number3:
+    print(f"The middle number is {number2}")
+if number3>number1 and number3<number2:
+    print(f"The middle number is {number3}")
+'''
+
+n1=int(input("Put the first number: "))
+n2=int(input("Put the second number: "))
+n3=int(input("Put the third number: "))
+
+if n1>n2 and n1>3:
+    max=n1
+elif n2>n1 and n2>n3:
+    max=n2
+else: max=n3
