@@ -38,3 +38,4 @@ beforevat=int(input("Put the price to calculate the VAT:"))
 print("The price after VAT is: ",beforevat*1.17)
 print("---------------------------------------")
 print("Task 46: ")
+
