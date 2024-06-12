@@ -1,8 +1,8 @@
 #עבודה מספר 1 – קורס צעדים ראשונים בתכנות
 
-
-#תרגיל 1: בדיקת שנה מעוברת
 while(True):
+
+    #תרגיל 1: בדיקת שנה מעוברת
     year=int(input("Put a year to check if it's a leap year: "))
     if year%4==0 and year%100!=0 or year%400==0:
         print("Yes, It's a leap year.")
@@ -15,18 +15,31 @@ while(True):
     #תרגיל 3: בדיקת תקינות כתובת דואר אלקטרוני
     email=input("Put an Email address: ")
 
-    length=4<len(email)<30
+    length=4<=len(email)<=30
     sht=email.count("@")==1
     capital=email[0].isupper()
 
     if length==True and sht==True and capital==True:
         print("Valid!!")
-    elif length==False:
+    elif length==False and sht==False and capital==False:
+        print("Not Valid, The Email doesn't have a (@) in it.")
+        print("Not Valid, The first letter should be capital.")
         print("Not Valid, The length must be 4-30.")
+    elif sht==False and capital==False:
+        print("Not Valid, The Email doesn't have a (@) in it.")
+        print("Not Valid, The first letter should be capital.")
+    elif sht==False and length==False:
+        print("Not Valid, The length must be 4-30.")
+        print("Not Valid, The Email doesn't have a (@) in it.")
+    elif capital==False and length==False:
+        print("Not Valid, The length must be 4-30.")
+        print("Not Valid, The first letter should be capital.")
     elif sht==False:
         print("Not Valid, The Email doesn't have a (@) in it.")
-    else:
+    elif capital==False:
         print("Not Valid, The first letter should be capital.")
+    else:
+        print("Not Valid, The length must be 4-30.")
 
     #תרגיל 4: מחשבון בסיסי
     firstnumber=float(input("Put the first number: "))
