@@ -125,7 +125,7 @@ print(f"You've entered {count} numbers, sum is {sum} the average is {sum/count}"
 # print(f"Now you have {cash-sum}")
 
 
-'''while True:
+while True:
     number=int(input("Put a number to check if it's prime: "))
 
     if number <= 1:
@@ -140,7 +140,7 @@ print(f"You've entered {count} numbers, sum is {sum} the average is {sum/count}"
         if is_prime:
             print(f"{number} is a prime number")
         else:
-            print(f"{number} is not a prime number")'''
+            print(f"{number} is not a prime number")
 
 
 '''for i in range(10):
