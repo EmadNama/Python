@@ -127,7 +127,7 @@ from tkinter import messagebox
 class CalculatorApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("")
+        self.root.title("Adars's Calculator")
 
         # Entry widget to display and input numbers
         self.entry = tk.Entry(root, width=20, font=('Arial', 18))
@@ -143,7 +143,7 @@ class CalculatorApp:
 
         for (text, row, column) in buttons:
             tk.Button(root, text=text, width=5, height=2, font=('Arial', 18),
-                      command=lambda t=text: self.on_button_click(t)).grid(row=row, column=column, padx=5, pady=5)
+                      command=lambda t=text: self.on_button_click(t)).grid(row=row, column=column, padx=10, pady=30)
 
     def on_button_click(self, text):
         current = self.entry.get()
