@@ -149,8 +149,8 @@ def EqualCheck(x,y): #checks if a number's dividers equal a second number and vi
 
 def ListOfCouples():
     list=[]
-    for i in range(10, 100000):
-        for j in range(i, 100000):
+    for i in range(10, 20):
+        for j in range(i, 20):
             if i!=j and EqualCheck(i,j):
                 list.append([i,j])
     return list
