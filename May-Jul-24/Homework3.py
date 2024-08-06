@@ -119,12 +119,13 @@ def sort_students_by_grades(dict):
     while len(dict) > 0:
         highest = top_student(dict)
         sorted_list.append(highest)
+        del dict[highest[0]]
     return sorted_list
 students = {
     "Emad": 95,
     "Itay": 85,
     "Avishay": 75,
-    "Lotem": 65,
+    "Lotem": 65
     "Ofir": 55
 }
 print(sort_students_by_grades(students))
