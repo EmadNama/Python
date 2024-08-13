@@ -55,7 +55,7 @@ def students_by_major(dict):
         new_dict[value[1]] = key
     return new_dict
 print("Dict is:", students_dict)
-print("Task 3: Major dict", students_by_major(students_dict))
+print("Task 3:", students_by_major(students_dict))
 print("------------------------------------------")
 
 #Task 4:
@@ -122,10 +122,51 @@ def sort_students_by_grades(dict):
         del dict[highest[0]]
     return sorted_list
 students = {
-    "Emad": 95,
-    "Itay": 85,
-    "Avishay": 75,
-    "Lotem": 65
-    "Ofir": 55
+    "Emad": 40,
+    "Itay": 80,
+    "Avishay": 70,
+    "Lotem": 60,
+    "Ofir": 90
 }
-print(sort_students_by_grades(students))
+print(f"Dict is: {students}")
+print(f"Task 6: {sort_students_by_grades(students)}")
+print("------------------------------------------")
+input("")
+
+# def highest_average_major(students, grades):
+#     major_grades = {}
+#     for student_id, (name, age, major) in students.items():
+#         if student_id in grades:
+#             grade = grades[student_id]
+#             if
+#
+#     return students
+#
+#
+# students = {
+#     '1': ('Emad', 22, 'Math'),
+#     '2': ('Yousef', 20, 'Science'),
+#     '3': ('Itay', 24, 'Math'),
+#     '4': ('Alon', 25, 'Math'),
+#     '5': ('Adar', 26, 'Science'),
+#     '6': ('Kylie', 23, 'Science')
+# }
+#
+# grades = {
+#     '1': 85,
+#     '2': 90,
+#     '3': 78,
+#     '4': 92,
+#     '5': 88,
+#     '6': 64
+# }
+#
+# print(highest_average_major(students, grades))
+
+
+
+
+
+
+
+

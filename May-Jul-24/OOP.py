@@ -378,68 +378,130 @@ print(course1)
 print(student1)'''
 
 
-# Teacher solution:
-class Student:
+# # Teacher solution:
+# class Student:
+#
+#     def __init__(self,name,id,courseList):
+#         self.name = name
+#         self.id = id
+#         self.courseList = courseList
+#         self.coursesGrades = {}
+#         for course in self.courseList:
+#             self.coursesGrades[course.courseNum]=0
+#
+#     def __repr__(self):
+#         return self.name+", "+str(self.id)
+#
+#     def printCoursesList(self):
+#         for course in self.courseList:
+#             print("Courses:", course)
+#
+#     def addCourse(self,course):
+#         for c in self.courseList:
+#             if course.courseNum == c.courseNum:
+#                 return 'Course already exist'
+#         self.courseList.append(course)
+#         self.coursesGrades[course.courseNum]=0
+#         course.addStudent(self)
+#
+#
+# class Course:
+#     def __init__(self,courseNum,courseName,studentsList):
+#         self.courseNum = courseNum
+#         self.courseName = courseName
+#         self.studetsList = studentsList
+#
+#     def __repr__(self):
+#         return str(self.courseNum)+","+self.courseName
+#
+#     def printStudents(self):
+#         for student in self.studetsList:
+#             print("Students in the course:",student)
+#
+#     def addStudent(self,student):
+#         for s in self.studetsList:
+#             if student.id==s.id:
+#                 return 'Student already in course!'
+#         self.studetsList.append(student)
+#         student.addCourse(self)
+#
+#
+#
+# s1 = Student('israel israeli','123456789',[])
+# s2 = Student('ploni almoni','987654321',[])
+#
+# c1 = Course(1111,'Java',[])
+# c2 = Course(2222,'Cpp',[])
+#
+# c1.addStudent(s1)
+# s2.addCourse(c1)
 
-    def __init__(self,name,id,courseList):
+
+
+
+
+
+############################ Training 11/08/2024 #############################################
+
+
+
+
+
+
+
+
+
+
+
+class Book:
+    def __init__(self, title, author, price, quantity, owners):
+        self.title = title
+        self.author = author
+        self.price = price
+        self.quantity = quantity
+        self.owners = owners
+
+    def update_quantity(self, amount):
+        self.quantity = amount
+
+    def apply_discount(self, percent):
+        x = (percent / 100) * self.price
+        self.price -= x
+        return self.price
+
+    def is_in_stock(self):
+        if self.quantity > 0:
+            return True
+        return False
+
+    def add_owner(self, name):
+        self.owners.append(name)
+
+    def list_owners(self):
+        return self.owners
+
+
+class Customer:
+    def __init__(self, name, purchased_books):
         self.name = name
-        self.id = id
-        self.courseList = courseList
-        self.coursesGrades = {}
-        for course in self.courseList:
-            self.coursesGrades[course.courseNum]=0
+        self.purchased_books = purchased_books
 
-    def __repr__(self):
-        return self.name+", "+str(self.id)
-
-    def printCoursesList(self):
-        for course in self.courseList:
-            print(course)
-
-    def addCourse(self,course):
-        for c in self.courseList:
-            if course.courseNum == c.courseNum:
-                return 'Course already exist'
-        self.courseList.append(course)
-        self.coursesGrades[course.courseNum]=0
-        course.addStudent(self)
-
-
-class Course:
-    def __init__(self,courseNum,courseName,studentsList):
-        self.courseNum = courseNum
-        self.courseName = courseName
-        self.studetsList = studentsList
-
-    def __repr__(self):
-        return str(self.courseNum)+","+self.courseName
-
-    def printStudents(self):
-        for student in self.studetsList:
-            print(student)
-
-    def addStudent(self,student):
-        for s in self.studetsList:
-            if student.id==s.id:
-                return 'Student already in course!'
-        self.studetsList.append(student)
-        student.addCourse(self)
+    def purchase_book(self, book, quantity):
+        if book.quantity < quantity:
+            print("No stock!")
+        else:
+            self.purchased_books.append(book)
 
 
 
-s1 = Student('israel israeli','123456789',[])
-s2 = Student('ploni almoni','987654321',[])
+class Bookstore:
+    def __init__(self, name, inventory, customers):
+        self.name = name
+        self.inventory = inventory
+        self.customers = customers
 
-c1 = Course(1111,'Java',[])
-c2 = Course(2222,'Cpp',[])
 
-print(s1)
-#s1.addCourse(c1)
-#s1.addCourse(c2)
-c1.addStudent(s1)
 
-print(s1.courseList)
-print(c1.studetsList)
-print(s2)
-print(c1)
-print(c2)
+
+
+
