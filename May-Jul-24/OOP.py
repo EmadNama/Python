@@ -453,55 +453,110 @@ print(student1)'''
 
 
 
-class Book:
-    def __init__(self, title, author, price, quantity, owners):
-        self.title = title
-        self.author = author
-        self.price = price
-        self.quantity = quantity
-        self.owners = owners
-
-    def update_quantity(self, amount):
-        self.quantity = amount
-
-    def apply_discount(self, percent):
-        x = (percent / 100) * self.price
-        self.price -= x
-        return self.price
-
-    def is_in_stock(self):
-        if self.quantity > 0:
-            return True
-        return False
-
-    def add_owner(self, name):
-        self.owners.append(name)
-
-    def list_owners(self):
-        return self.owners
-
-
-class Customer:
-    def __init__(self, name, purchased_books):
-        self.name = name
-        self.purchased_books = purchased_books
-
-    def purchase_book(self, book, quantity):
-        if book.quantity < quantity:
-            print("No stock!")
-        else:
-            self.purchased_books.append(book)
-
-
-
-class Bookstore:
-    def __init__(self, name, inventory, customers):
-        self.name = name
-        self.inventory = inventory
-        self.customers = customers
-
-#test
-
-
-
-
+# class Book:
+#
+#     def __init__(self, title, author, price, quantity, owners):
+#         self.title = title
+#         self.author = author
+#         self.price = price
+#         self.quantity = quantity
+#         self.owners = owners
+#
+#     def __repr__(self):
+#         return(f"{self.title} ,{self.author} ,{self.price} ,{self.quantity} ,{self.owners}")
+#
+#     def update_quantity(self, amount):
+#         if amount < 0:
+#             print("Wrong amount!")
+#         else:
+#             self.quantity = amount
+#
+#     def apply_discount(self, percent):
+#         x = (percent / 100) * self.price
+#         self.price -= x
+#         return self.price
+#
+#     def is_in_stock(self):
+#         if self.quantity > 0:
+#             return True
+#         return False
+#
+#     def add_owner(self, owner):
+#         self.owners.append(owner.name)
+#         owner.purchased_books.append(self.title)
+#
+#     def list_owners(self):
+#         return self.owners
+#
+#
+# class Customer:
+#
+#     def __init__(self, name, purchased_books):
+#         self.name = name
+#         self.purchased_books = purchased_books
+#
+#     def __repr__(self):
+#         return(f"{self.name}, {self.purchased_books}")
+#
+#     def purchase_book(self, book, quantity):
+#         if book.quantity < quantity:
+#             print("No stock!")
+#         else:
+#             self.purchased_books.append(book.title)
+#             book.owners.append(self.name)
+#             book.quantity -= quantity
+#
+#
+# class Bookstore:
+#
+#     def __init__(self, name, inventory, customers):
+#         self.name = name
+#         self.inventory = inventory
+#         self.customers = customers
+#
+#     def __repr__(self):
+#         return (f"{self.name}, {self.inventory}, {self.customers}")
+#
+#     def add_book(self, book):
+#         self.inventory.append(book.title)
+#
+#     def remove_book(self,book):
+#         self.inventory.remove(book.title)
+#
+#     def find_book(self,book):
+#         if book.title in self.inventory:
+#             return book
+#         else:
+#             return ("Book Store Doesn't Have This Book")
+#
+#     def process_purchase(self, customer, book, quantity):
+#         customer.purchase_book(book, quantity)
+#         self.customers.append(customer.name)
+#
+#     def add_customer(self,customer):
+#         self.customers.append(customer.name)
+#
+#     def find_customer(self, customer):
+#         if customer.name in self.customers:
+#             return customer
+#         else:
+#             return (f"{customer} wasn't found in this store")
+#
+#
+#
+# customer1 = Customer("Emad", [])
+# book1 = Book("Ways to love", "Michael Jordan", 50, 5, [])
+# bookstore1 = Bookstore("Amazing Books Store", [], [])
+#
+# print(customer1)
+# print(book1)
+# print(bookstore1)
+#
+#
+# #processing a purchase:
+#
+# bookstore1.add_book(book1)
+# bookstore1.process_purchase(customer1, book1, 4)
+#
+# print(book1)
+# print(bookstore1)
