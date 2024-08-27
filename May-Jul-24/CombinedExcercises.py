@@ -162,6 +162,7 @@ def repeated_words(text):
     list_words = text.split()
     for word in list_words:
         if list_words.count(word) > 1:
+            return word
 print(repeated_words("emad emad hello hello my"))
 
 
