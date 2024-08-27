@@ -5,7 +5,7 @@ class Author:
         self.posts = []
 
     def __repr__(self):
-        return f"Name: {self.name}, Email: {self.email}"
+        return f"Author Name: {self.name}, Email: {self.email}"
 
     def write_post(self, title, content, blog, publish_date):
         post = Post(title, content, self.name, publish_date)
@@ -40,7 +40,7 @@ class Blog:
         self.posts = []
 
     def __repr__(self):
-        return f"Name: {self.name}, Description: {self.description}"
+        return f"Blog Name: {self.name}, Description: {self.description}"
 
     def add_post(self, post):
         self.posts.append(post)
@@ -58,11 +58,20 @@ class Blog:
 author1 = Author("Emad", "emadna@ac.sce.ac.il")
 blog1 = Blog("Test Blog", "That's the description of the test blog")
 
-print(author1.display_posts())
-print(blog1.display_posts())
+print(author1)
+print(blog1)
 
-author1.write_post("Test Post", "That's the content of the test post", blog1, "12/09/2013")
+print(author1.display_posts()) #Empty posts of Author
+print(blog1.display_posts()) #Empty blog
 
-print(author1.display_posts())
-print(blog1.display_posts())
-print(Post.edit_content("Test Post", "Edited Content"))
+author1.write_post("Test Post", "Content of the Test Post", blog1, "24/07/1996")
+
+print(author1.display_posts()) #author posts after method author.write_post
+print(blog1.display_posts()) #blog posts after author.write_post
+
+blog1.posts[0].edit_content("New Content")
+
+print(blog1.display_posts()) #blog posts after editing a post
+
+blog1.remove_post(blog1.posts[0])
+print(blog1.display_posts()) #blog posts after removing a post
