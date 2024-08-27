@@ -163,3 +163,178 @@ def repeated_words(text):
     for word in list_words:
         if list_words.count(word) > 1:
 print(repeated_words("emad emad hello hello my"))
+
+
+
+# tasks in loops, conditions, lists and dictionaries.
+# 26/08/2024
+
+# task 1
+
+def func1(list):
+    new_list = []
+    for num in list:
+        if num % 2 == 0:
+            new_list.append(num ** 2)
+        else:
+            new_list.append(num)
+    return new_list
+
+
+list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(func1(list))
+
+
+# task 2
+
+def func2(dict):
+    for product, price in dict.items():
+        if price > 100:
+            dict[product] = price * 0.90
+        else:
+            dict[product] = price
+    return dict
+
+
+dict = {
+    "cola": 10,
+    "rice": 50,
+    "meat": 200
+}
+
+print(func2(dict))
+
+
+# task 3
+
+def func3(list):
+    x = 0
+    y = ""
+    for word in list:
+        if len(word) > x:
+            x = len(word)
+            y = word
+    return y
+
+
+list = ["lnflsd", "emad", "helloeveryone", "test"]
+print(func3(list))
+
+
+# task 4
+
+def func4(list):
+    dict = {}
+    for num in list:
+        dict[num] = "Even" if num % 2 == 0 else "Odd"
+    return dict
+
+
+list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(func4(list))
+
+
+# task 5
+
+def func5(list):
+    list_students = []
+    for dict in list:
+        for name, grade in dict.items():
+            if grade >= 75:
+                list_students.append(name)
+    return list_students
+
+
+list = [
+    {"Emad": 75},
+    {"Itay": 90},
+    {"Adar": 60, "Lidor": 70},
+    {"Gal": 80, "Atar": 40}
+]
+
+print(func5(list))
+
+
+# task 6:
+
+def func6(list):
+    new_list = []
+    for word in list:
+        if word.startswith("A") or word.startswith("a"):
+            new_list.append(word)
+    return new_list
+
+
+list = ["adar", "Adar", "Emad", "ability", "sami shamoon"]
+print(func6(list))
+
+
+# task 7:
+
+def func7(dict):
+    studentaverage = 0
+    studentname = ""
+    for student, grades in dict.items():
+        x = sum(grades)
+        average = x / len(grades)
+        if average > studentaverage:
+            studentaverage = average
+            studentname = str(student)
+    return studentname
+
+
+dict = {
+    "Emad": [10, 20, 30],
+    "Adar": [30, 40, 50],
+    "Lotem": [5, 10, 15]
+}
+
+print(func7(dict))
+
+
+# task 8:
+
+def func8(list):
+    new_list = []
+    for num in list:
+        flag = True
+        for i in range(2, num):
+            if num % i == 0:
+                flag = False
+        if flag == True:
+            new_list.append(num)
+    return new_list
+
+
+list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+print(func8(list))
+
+
+def func9():
+    list = []
+    for num in range(1, 101):
+        if num % 3 == 0 and num % 5 == 0:
+            list.append("FizzBuzz")
+        elif num % 3 == 0:
+            list.append("Fizz")
+        elif num % 5 == 0:
+            list.append("Buzz")
+        else:
+            list.append(num)
+    return list
+
+
+print(func9())
+
+
+# task 10:
+
+def func10(string):
+    new_dict = {}
+    for letter in string:
+        new_dict[letter] = string.count(letter)
+    return new_dict
+
+
+string = "aaaaa"
+print(func10(string))
