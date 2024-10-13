@@ -83,3 +83,4 @@ def func6(list1, list2):
     return list
 
 print(func6([2,4,6], [1,3,5]))
+
