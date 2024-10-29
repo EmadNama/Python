@@ -1,4 +1,119 @@
-def func1(list):
+def func1(dict):
+    count = 0
+    sum = 0
+    for student, grade in dict.items():
+        count += 1
+        sum += grade
+    return sum/count
+
+# dict = {
+#     "Emad": 70,
+#     "Yosef": 80,
+#     "Yarin": 90
+# }
+#
+# print(func(dict))
+
+def func2(list):
+    sum = 0
+    for num in list:
+        if num<0:
+            sum+=num
+    return sum
+
+# list = [1,-1,2,-2]
+# print(func2(list))
+
+def func3(string):
+    for i in range(len(string)//2):
+        if string[i] != string[-1-i]:
+            return False
+    return True
+
+
+# string = "level"
+# print(func3(string))
+
+def func4(string):
+    dict = {}
+    list = []
+    for i in string:
+        dict[i] = string.count(i)
+    for letter, count in dict.items():
+        if count > 1:
+            list.append(letter)
+    return list
+
+# string = "Emmmmaaaaad"
+# print(func4(string))
+
+
+def check_ascending(list):
+    for i in range(len(list) - 1):
+        if list[i] > list[i + 1]:
+            return False
+    return True
+
+def check_descending(list):
+    for i in range(len(list) - 1):
+        if list[i] < list[i + 1]:
+            return False
+    return True
+
+def func5(list):
+    if check_ascending(list):
+        return "Ascending"
+    elif check_descending(list):
+        return "Descending"
+    else:
+        return "Numbers not ascending or descending!!"
+
+# list = [1,2,3,4,5,6]
+# print(func5(list))
+
+def func6(list1, list2):
+    temp = 0
+    list = list1 + list2
+    for i in range(len(list)):
+        for j in range(len(list) - 1):
+            if list[j] > list[j + 1]:
+                temp = list[j]
+                list[j] = list[j + 1]
+                list[j + 1] = temp
+    return list
+
+print(func6([2,4,6], [1,3,5]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def func7(list):
     new_list = []
     for num in list:
         if num in new_list:
@@ -8,9 +123,9 @@ def func1(list):
     return new_list
 
 # list = [1,1,3,4,3]
-# print(func1(list))
+# print(func7(list))
 
-def func2(list1,list2, num):
+def func8(list1,list2, num):
     dict = {}
     for i in range(len(list1)):
         dict[i] = num - list1[i]
@@ -21,10 +136,10 @@ def func2(list1,list2, num):
 
 # list1 = [1,2,3,4]
 # list2 = [4,6,3,2]
-# print(func2(list1, list2, 10))
+# print(func8(list1, list2, 10))
 
 
-def function2(list1, list2, num):
+def func9(list1, list2, num):
     dict = {}
     for i in range(len(list1)):
         dict[i] = num - i
@@ -35,11 +150,11 @@ def function2(list1, list2, num):
 
 # list1 = [1,2,3,4]
 # list2 = [4,6,3,2]
-# print(func2(list1, list2, 10))
+# print(func9(list1, list2, 10))
 
 
 
-def func3(list1,list2,num):
+def func10(list1,list2,num):
     temp_list = []
     for i in list1:
         for j in list2:
@@ -49,10 +164,10 @@ def func3(list1,list2,num):
 
 # list1 = [1,2,3,4,5,6,7,8,9,10]
 # list2 = [3,4,5,6,1,2,3,4,5,7,8,9,5]
-# print(func3(list1, list2, 5))
+# print(func10(list1, list2, 5))
 
 
-def func4(list, k):
+def func11(list, k):
     n = len(list)
     k = k%n
     temp_list = []
@@ -62,10 +177,10 @@ def func4(list, k):
     return temp_list
 
 # list = [1,2,3,4]
-# print(func4(list, 1))
+# print(func11(list, 1))
 
 
-def func5(list):
+def func12(list):
     dict = {}
     avg = sum(list) / len(list)
     for i in list:
@@ -73,9 +188,9 @@ def func5(list):
     return dict
 
 # list = [70,80,90]
-# print(func5(list))
+# print(func12(list))
 
-def func6(list):
+def func13(list):
     new_list = []
     for i in range(1, max(list)):
         if i in list:
@@ -85,18 +200,18 @@ def func6(list):
     return new_list
 
 # list = [1,10]
-# print(func5(list))
+# print(func13(list))
 
-def func7(list):
+def func14(list):
     dict = {}
     for num in list:
         dict[num] = list.count(num)
     return dict
 
 # list = [1,2,2,4,5,6,5]
-# print(func7(list))
+# print(func14(list))
 
-def func8(list1, list2):
+def func15(list1, list2):
     new_list = []
     for num in list1:
         if num in list2:
@@ -105,18 +220,18 @@ def func8(list1, list2):
 
 # list1 = [1,2,3,4,5,6]
 # list2 = [7,8,9,5,1,2]
-# print(func8(list1,list2))
+# print(func15(list1,list2))
 
-def func9(num):
+def func16(num):
     for i in range(0,num+1):
         if i * i == num:
             return i
         elif i * i < num and (i+1)*(i+1)>num:
             return i
 
-# print(func9(36))
+# print(func16(36))
 
-def func10(list):
+def func17(list):
     new_list = []
     count = 0
     for num in list:
@@ -130,7 +245,7 @@ def func10(list):
     return new_list
 
 # list = [1,2,3,0,1,2,0,1,4,0]
-# print(func10(list))
+# print(func17(list))
 
 
 
