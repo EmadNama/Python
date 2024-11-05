@@ -35,7 +35,7 @@ class Store:
         self.owner = owner
         self.products = []
     def __repr__(self):
-        return f"Store name: {self.name}\nStore Owner: {self.owner}\nStore Products: {self.products}"
+        return f"Store name: {self.name}\nStore Owner: {self.owner}\nStore Products: {[(i[0].name, i[1]) for i in self.products]}"
 
     def add_product(self, product, count):
         for i in self.products:
