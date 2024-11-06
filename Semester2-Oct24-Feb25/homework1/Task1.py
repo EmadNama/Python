@@ -11,7 +11,7 @@ class Product:
     def __repr__(self):
         return f"{self.id} {self.name} {self.department} {self.price}"
 
-    def getprice(self):
+    def GetPrice(self):
         return f"{self.name}'s Price is {self.price}"
 
 
@@ -24,7 +24,7 @@ class DiscountProduct(Product):
     def __repr__(self):
         return f"{self.id} {self.name} {self.department} {self.price}"
 
-    def getprice(self):
+    def GetPrice(self):
         return f"{self.name}'s Original Price is {self.price}\n   - And now has {self.percentage}% Off!\n   - Price after discount: {(self.price) - self.price*self.percentage/100}"
 
 
@@ -37,7 +37,7 @@ class Store:
     def __repr__(self):
         return f"Store name: {self.name}\nStore Owner: {self.owner}\nStore Products: {[(i[0].name, i[1]) for i in self.products]}"
 
-    def add_product(self, product, count):
+    def AddProduct(self, product, count):
         for i in self.products:
             if i[0].name == product.name:
                 temp = (i[0], i[1] + count)
@@ -47,20 +47,20 @@ class Store:
         self.products.append((product, count))
         return f"Action: Adding NEW {count} {product.name} to {self.name}'s Stock\nUpdated Stock: {self.products}\n"
 
-    def totalvalue(self):
+    def TotalValue(self):
         sum = 0
         for product, count in self.products:
             sum += product.price * count
         return f"{self.name} has products worth {sum}₪\n"
 
-    def getdiscountproduct(self):
+    def GetDiscountProduct(self):
         list = []
         for product, count in self.products:
             if isinstance(product, DiscountProduct):
                 list.append(product)
         return f"List of {self.name}'s Discounted Products:\n{tuple(list)}"
 
-    def getcheapestbydepartment(self, department):
+    def GetCheapestByDepartment(self, department):
         list = []
         for product, count in self.products:
             if product.department == department:
@@ -73,7 +73,7 @@ class Store:
                 cheapest_product = product
         return f"The cheapest product in {department} is {cheapest_product.name}"
 
-    def buy(self, id, howmany, money):
+    def Buy(self, id, howmany, money):
         for product in self.products:
             if product[0].id == id:
                 if howmany <= product[1]:
@@ -109,44 +109,44 @@ discountedproduct3 = DiscountProduct("9999", "Locker", "Home", 900, 30)
 store1 = Store("DanaMarket", "David")
 
 
-store1.add_product(product1, 20)
-store1.add_product(product1, 20) #הןספת כמות למוצר
+store1.AddProduct(product1, 20)
+store1.AddProduct(product1, 20) #הןספת כמות למוצר
 
-store1.add_product(product2, 20)
-store1.add_product(product3, 20)
-store1.add_product(product4, 20)
-store1.add_product(product5, 20)
-store1.add_product(product6, 20)
+store1.AddProduct(product2, 20)
+store1.AddProduct(product3, 20)
+store1.AddProduct(product4, 20)
+store1.AddProduct(product5, 20)
+store1.AddProduct(product6, 20)
 
-store1.add_product(discountedproduct1, 20)
-store1.add_product(discountedproduct2, 20)
-store1.add_product(discountedproduct3, 20)
+store1.AddProduct(discountedproduct1, 20)
+store1.AddProduct(discountedproduct2, 20)
+store1.AddProduct(discountedproduct3, 20)
 
 print("")
-print(product1.getprice())
-print(product2.getprice())
+print(product1.GetPrice())
+print(product2.GetPrice())
 print("")
-print(discountedproduct1.getprice())
-print(discountedproduct2.getprice())
-print(discountedproduct3.getprice())
+print(discountedproduct1.GetPrice())
+print(discountedproduct2.GetPrice())
+print(discountedproduct3.GetPrice())
 print("")
 print(store1)
 print("")
-print(store1.totalvalue())
-print(store1.getdiscountproduct())
+print(store1.TotalValue())
+print(store1.GetDiscountProduct())
 print("")
-print(store1.getcheapestbydepartment("Tobacco"))
-print(store1.getcheapestbydepartment("Home"))
-print(store1.getcheapestbydepartment("Alcohol"))
+print(store1.GetCheapestByDepartment("Tobacco"))
+print(store1.GetCheapestByDepartment("Home"))
+print(store1.GetCheapestByDepartment("Alcohol"))
 print("")
-print(store1.buy("1111", 1, 20)) #מקרה של קנייה רגילה
+print(store1.Buy("1111", 1, 20)) #מקרה של קנייה רגילה
 print("")
-print(store1.buy("7777", 1, 1000)) #מקרה של קניית מוצר בהנחה
+print(store1.Buy("7777", 1, 1000)) #מקרה של קניית מוצר בהנחה
 print("")
-print(store1.buy("3333", 3, 200)) #מקרה של אי ספיקת כסף
+print(store1.Buy("3333", 3, 200)) #מקרה של אי ספיקת כסף
 print("")
-print(store1.buy("9999", 60, 200)) #מקרה של אי ספיקת כמות
+print(store1.Buy("9999", 60, 200)) #מקרה של אי ספיקת כמות
 print("")
-print(store1.buy("0000", 10, 30)) #מקרה של מוצר חסר
+print(store1.Buy("0000", 10, 30)) #מקרה של מוצר חסר
 print("")
 print(store1) #מלאי מעודכן בסוף
