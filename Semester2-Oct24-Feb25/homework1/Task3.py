@@ -137,3 +137,5 @@ game1.AddPlayer(warrior1)
 game1.AddPlayer(mage1)
 
 game1.Battle(warrior1,mage1)
+
+print("Hello World! That's A new text from vs 2022")
