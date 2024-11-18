@@ -57,7 +57,7 @@ class Store:
         list = []
         for product, count in self.products:
             if isinstance(product, DiscountProduct):
-                list.append(product)
+                list.append(product.name)
         return f"List of {self.name}'s Discounted Products:\n{tuple(list)}"
 
     def GetCheapestByDepartment(self, department):
