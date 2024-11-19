@@ -37,3 +37,11 @@ def character_count(str, ch):
         return 1 + character_count(str[1:], ch)
     else:
         return character_count(str[1:], ch)
+
+def str_fix(str):
+    if len(str) <= 1:
+        return str
+    if str[0] == " ":
+        return str_fix(str[1:]) + " "
+    return str[0] + str_fix(str[1:])
+
