@@ -45,3 +45,30 @@ def str_fix(str):
         return str_fix(str[1:]) + " "
     return str[0] + str_fix(str[1:])
 
+def isAscending(list):
+    if len(list) == 1:
+        return True
+    if list[0] < list[1]:
+        return isAscending(list[1:])
+    return False
+
+def EvenMult(list):
+    if len(list) == 0:
+        return 1
+    if list[0] % 2 == 0:
+        return list[0] * EvenMult(list[1:])
+    return EvenMult(list[1:])
+
+def RemoveCh(str, ch):
+    if len(str) <= 1:
+        return str
+    if str[0] == ch:
+        return RemoveCh(str[1:], ch)
+    return str[0] + RemoveCh(str[1:], ch)
+
+def isPalindrome(str):
+    if len(str) <= 1:
+        return True
+    if str[0] == str[-1]:
+        return isPalindrome(str[1:-1])
+    return False
