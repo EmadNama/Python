@@ -1,5 +1,5 @@
 import random
-
+import time
 
 class Character:
     def __init__(self, name, hp, defense, attack):
@@ -23,8 +23,8 @@ class Character:
 
 
 class Warrior(Character):
-    def __init__(self, name, hp, defense, attack):
-        super().__init__(name, hp, defense, attack)
+    def __init__(self, name, hp, defense, attack, armor):
+        super().__init__(name, hp, defense+armor, attack)
     def __repr__(self):
         return (f"Warrior Information:"
                 f"\n Name: {self.name}"
@@ -45,8 +45,8 @@ class Warrior(Character):
 
 
 class Mage(Character):
-    def __init__(self, name, hp, defense, attack):
-        super().__init__(name, hp, defense, attack)
+    def __init__(self, name, hp, defense, attack, magic_power):
+        super().__init__(name, hp, defense, attack+magic_power)
     def __repr__(self):
         return (f"Mage Information:"
                 f"\n Name: {self.name}"
@@ -96,10 +96,10 @@ class Game:
                   f"\n- Attack Power: {player2.attack}\n")
 
             while True:
-                if player1.hp <= 0:
+                if player1.IsAlive() == False:
                     print(f"Player 1 {player1.name} Died")
                     break
-                if player2.hp <= 0:
+                if player2.IsAlive() == False:
                     print(f"Player 2 {player2.name} Died")
                     break
                 turn = random.randint(0,3)
@@ -107,10 +107,12 @@ class Game:
                     player1.Attack(player2)
                     print(f"{player1.name} Attacked {player2.name}\n{player1.name} ({player1.hp}/{player1.defense})\n{player2.name} ({player2.hp}/{player2.defense})")
                     print("")
+                    time.sleep(2)
                 if turn == 1:
                     player2.Attack(player1)
                     print(f"{player2.name} Attacked {player1.name}\n{player1.name} ({player1.hp}/{player1.defense})\n{player2.name} ({player2.hp}/{player2.defense})")
                     print("")
+                    time.sleep(2)
                 if turn == 2:
                     if isinstance(player1, Warrior):
                         if player1.SpecialMove(player2) == False:
@@ -119,17 +121,16 @@ class Game:
                         else:
                             print(f"{player1.name} Performed A Special Move on {player2.name}\n{player1.name} ({player1.hp}/{player1.defense})\n{player2.name} ({player2.hp}/{player2.defense})")
                             print("")
+                            time.sleep(2)
                 if turn == 3:
                     player2.SpecialMove(player1)
                     print(f"{player2.name} Performed A Special Move on {player1.name}\n{player1.name} ({player1.hp}/{player1.defense})\n{player2.name} ({player2.hp}/{player2.defense})")
                     print("")
+                    time.sleep(2)
 
 
-
-
-
-warrior1 = Warrior("Warrior", 100, 100, 10)
-mage1 = Mage("Mage", 100, 100, 10)
+warrior1 = Warrior("Yarin", 100, 100, 10, 0)
+mage1 = Mage("Eden", 100, 100, 10, 0)
 
 game1 = Game("Game")
 
@@ -137,5 +138,3 @@ game1.AddPlayer(warrior1)
 game1.AddPlayer(mage1)
 
 game1.Battle(warrior1,mage1)
-
-print("Hello World! That's A new text from vs 2022")
