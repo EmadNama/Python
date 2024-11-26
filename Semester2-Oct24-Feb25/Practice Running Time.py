@@ -11,16 +11,16 @@ def recSum(n):
         return 1
     return n + recSum(n - 1)
 
-startTime = time.perf_counter()
-print(sum(500))
-endTime = time.perf_counter()
-print(f"{endTime - startTime:.10f}")
+# startTime = time.perf_counter()
+# print(sum(500))
+# endTime = time.perf_counter()
+# print(f"{endTime - startTime:.10f}")
 
 
-startTime = time.perf_counter()
-print(recSum(500))
-endTime = time.perf_counter()
-print(f"{endTime - startTime:.10f}")
+# startTime = time.perf_counter()
+# print(recSum(500))
+# endTime = time.perf_counter()
+# print(f"{endTime - startTime:.10f}")
 
 def sleep():
     x = 0
@@ -37,5 +37,37 @@ def fiveSec():
         end = time.perf_counter()
         print(f"{end - start:.10f}")
 
-# fiveSec()
+fiveSec()
 
+def twodigitssum(lst, n):
+
+    dict = {}
+    pairs = []
+
+    for i in lst:
+        x = n - i
+        if x in dict:
+            pairs.append((x, i))
+        dict[i] = True
+    return pairs
+
+lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(twodigitssum(lst, 6))
+
+def twolists(list1, list2):
+    dict = {}
+    pst = []
+    for i in list1:
+        if i not in dict:
+            dict[i] = 0
+        dict[i] += 1
+    for i in list2:
+        if i in dict:
+            dict[i] += 1
+    for key, val in dict.items():
+        if val >= 2:
+            pst.append(key)
+    return pst
+
+
+print(twolists([1,2,2,2,2,2,2,2], [1,6,2,2,2,2,2,7,7,7,7,7]))
