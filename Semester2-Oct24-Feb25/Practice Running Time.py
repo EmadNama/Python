@@ -1,3 +1,4 @@
+
 import time
 
 def sum(n):
@@ -37,7 +38,7 @@ def fiveSec():
         end = time.perf_counter()
         print(f"{end - start:.10f}")
 
-fiveSec()
+# fiveSec()
 
 def twodigitssum(lst, n):
 
