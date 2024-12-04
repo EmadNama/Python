@@ -76,13 +76,7 @@ shop.enqueue(5)
 shop.enqueue(6)
 shop.dequeue()
 shop.enqueue(7)
-shop.dequeue()
-shop.dequeue()
-shop.dequeue()
-shop.dequeue()
-shop.dequeue()
-shop.dequeue()
-shop.dequeue()
+
 
 
 
