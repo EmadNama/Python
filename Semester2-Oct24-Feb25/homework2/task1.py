@@ -127,7 +127,7 @@ customer11, customer12, customer13, customer14, customer15, customer16, customer
 def main():
     while True:
         x = random.randint(0,100)
-        if x < 80:
+        if x < 85:
             customer_to_add = random.choice(list_customers)
             list_customers.remove(customer_to_add)
             print(f"Adding {customer_to_add.name} to the queue with priority {customer_to_add.priority}")
