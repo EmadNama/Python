@@ -1,6 +1,3 @@
-import time
-
-
 def BubbleSort(list):
     for i in range(len(list) -1):
         for j in range(len(list) -1 -i):
@@ -27,9 +24,6 @@ def BinarySearch(list, num):
 def main():
     list = [2,1,12,40,13,90,88]
     # print(BubbleSort(list))
-    print(BubbleSort(list))
+    print(BinarySearch(BubbleSort(list), 90))
 
-start = time.perf_counter()
 main()
-end = time.perf_counter()
-print(f"{end - start:.10f}")
