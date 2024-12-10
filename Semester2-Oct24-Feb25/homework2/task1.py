@@ -54,10 +54,10 @@ class Store:
             self.queue = temp
         elif customer.priority == 2:
             temp = Queue()
-            while not self.queue.isEmpty() and self.queue.peek().priority == 3:
+            while not self.queue.isEmpty() and self.queue.peek().priority >= 2:
                 temp.enqueue(self.queue.dequeue())
-            while not self.queue.isEmpty() and self.queue.peek().priority == 2:
-                temp.enqueue(self.queue.dequeue())
+            # while not self.queue.isEmpty() and self.queue.peek().priority == 2:
+            #     temp.enqueue(self.queue.dequeue())
             temp.enqueue(customer)
             while not self.queue.isEmpty():
                 temp.enqueue(self.queue.dequeue())
@@ -122,7 +122,6 @@ customer20 = Customer("Iris", "9999", 3)
 
 list_customers = [customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10,
 customer11, customer12, customer13, customer14, customer15, customer16, customer17, customer18, customer19, customer20]
-
 
 def main():
     while True:
