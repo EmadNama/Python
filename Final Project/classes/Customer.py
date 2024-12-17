@@ -1,4 +1,4 @@
-from Person import Person
+from .Person import Person
 
 class Customer(Person):
     def __init__(self, name, age, id, is_vip=False):

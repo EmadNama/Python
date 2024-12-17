@@ -5,4 +5,4 @@ class WorkDay:
         self.work_hours = work_hours
 
     def __repr__(self):
-        return f"WorkDay Information:\nDate: {self.date}\nDescription: {self.description}"
+        return f"WorkDay Information:\nDay: {self.day}\nMonth: {self.month}\nWork Hours: {self.work_hours}"

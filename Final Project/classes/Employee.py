@@ -1,4 +1,4 @@
-from Person import Person
+from .Person import Person
 
 class Employee(Person):
     def __init__(self, name, id, age, hour_rate, workday=None):

@@ -1,6 +1,3 @@
-from assets.Stack import Stack
-from assets.Queue import Queue
-
 class Flight:
     def __init__(self, flight_number, destination, day, month, hour, max_passengers, price, queue=None, suitcases_stack=None):
         self.flight_number = flight_number

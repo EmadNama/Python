@@ -1,5 +1,5 @@
-from classes.assets.Stack import Stack
-from classes.assets.Queue import Queue
+from assets.Stack import Stack
+from assets.Queue import Queue
 
 from classes.Customer import Customer
 from classes.Employee import Employee
@@ -8,6 +8,17 @@ from classes.WorkDay import WorkDay
 from classes.Airport import Airport
 from classes.Flight import Flight
 from classes.Suitcase import Suitcase
+
+
+# class Driver:
+#     def ChooseFlight(self, customer_id, budget):
+
+
+
+
+
+
+
 
 
 # Customers
@@ -101,6 +112,74 @@ airport1 = Airport(code="JFK", flights=[], customers=[], employees=[])
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def Menu():
+#     print(f"Welcome to {airport1.code} Airport"
+#           f"\nPlease Choose Operation:"
+#           f"\n - Add Flight"
+#           f"\n - Add Customer"
+#           f"\n - Offer Flight"
+#           f"\n - Update Flight"
+#           f"\n - Add Employee"
+#           f"\n - Update Employee Work Hours"
+#           f"\n - View Workers List"
+#           f"\n - IDK"
+#           f"\n - Exit")
 
 
 
