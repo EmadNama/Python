@@ -1,14 +1,16 @@
 class Airport:
-    def __init__(self, name):
-        self.name = name
-        self.employees = []
-        self.customers = []
+    def __init__(self, code, flights, customers, employees):
+        self.code = code
+        self.flights = flights
+        self.customers = customers
+        self.employees = employees
 
-    def add_employee(self, employee):
-        self.employees.append(employee)
-
-    def add_customer(self, customer):
+    def AddCustomer(self, customer):
         self.customers.append(customer)
 
     def __repr__(self):
-        return f"Airport Information:\nName: {self.name}\nEmployees: {len(self.employees)}\nCustomers: {len(self.customers)}"
+        return (f"Airport Information:\n"
+                f"Airport Code: {self.code}\n"
+                f"Flights: {self.flights}\n"
+                f"Employees: {self.employees}\n"
+                f"Customers: {self.customers}")

@@ -1,14 +1,23 @@
-from assets.Queue import Queue
 from assets.Stack import Stack
-
+from assets.Queue import Queue
 
 class Flight:
-    def __init__(self, flight_number, month, day, hour, destination, max_passengers, time=None):
+    def __init__(self, flight_number, destination, day, month, hour, max_passengers, price, queue=None, suitcases_stack=None):
         self.flight_number = flight_number
-        self.date = date
         self.destination = destination
-        self.origin = origin
-        self.time = time
+        self.day = day
+        self.month = month
+        self.hour = hour
+        self.max_passengers = max_passengers
+        self.price = price
+        self.queue = queue
+        self.suitcases_stack = suitcases_stack
 
     def __repr__(self):
-        return f"Flight Information:\nFlight Number: {self.flight_number}\nDate: {self.date}\nDestination: {self.destination}\nOrigin: {self.origin}\nTime: {self.time}"
+        return (f"Flight Information:\n"
+                f"Flight Number: {self.flight_number}\n"
+                f"Date: {self.day}/{self.month}\n"
+                f"Destination: {self.destination}\n"
+                f"Time: {self.hour}:00\n"
+                f"Max Passengers: {self.max_passengers}\n"
+                f"Price: ${self.price}")
