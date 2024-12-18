@@ -10,17 +10,6 @@ from classes.Flight import Flight
 from classes.Suitcase import Suitcase
 
 
-# class Driver:
-#     def ChooseFlight(self, customer_id, budget):
-
-
-
-
-
-
-
-
-
 # Customers
 customer1 = Customer(name="Alice", age=25, id="C1001", is_vip=True)
 customer2 = Customer(name="Bob", age=40, id="C1002", is_vip=False)
@@ -67,7 +56,7 @@ flight1 = Flight(flight_number="F1001", destination="New York", day=15, month=12
                  max_passengers=200, price=350, queue=Queue(), suitcases_stack=Stack())
 
 flight2 = Flight(flight_number="F1002", destination="Paris", day=16, month=12, hour=15,
-                 max_passengers=180, price=500, queue=Queue(), suitcases_stack=Stack())
+                 max_passengers=140, price=500, queue=Queue(), suitcases_stack=Stack())
 
 flight3 = Flight(flight_number="F1003", destination="London", day=17, month=12, hour=12,
                  max_passengers=150, price=400, queue=Queue(), suitcases_stack=Stack())
@@ -108,65 +97,34 @@ suitcase10 = Suitcase(owner=customer10, weight=21)
 
 
 # Airport
-airport1 = Airport(code="JFK", flights=[], customers=[], employees=[])
+airport1 = Airport(code="JFK", flights=[flight1, flight2, flight3, flight4], customers=[customer1], employees=[])
 
 
+class Driver:
+    def __init__(self, name):
+        self.name = name
+
+    def ChooseFlight(self, customer_id, budget):
+        for cust in airport1.customers:
+            if cust.id == customer_id:
+                available_flights = [flight for flight in airport1.flights
+                                     if flight.price <= budget
+                                     and flight.queue.size() < flight.max_passengers]
+                if available_flights:
+                    print(f"Available flights for {cust.name} within your budget of {budget}:")
+                    for flight in available_flights:
+                        print(f"{flight.flight_number}: {flight.destination} - ${flight.price}"
+                              f"\n {flight.max_passengers - flight.queue.size()}"
+                              f" Seats out of {flight.max_passengers} Available")
+                else:
+                    print(f"No flights available within your budget of {budget}.")
+                break
+        else:
+            print(f"Customer with ID {customer_id} not found.")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+driver1 = Driver("Emad")
+driver1.ChooseFlight("C1001", 500)
 
 # def Menu():
 #     print(f"Welcome to {airport1.code} Airport"
@@ -180,8 +138,8 @@ airport1 = Airport(code="JFK", flights=[], customers=[], employees=[])
 #           f"\n - View Workers List"
 #           f"\n - IDK"
 #           f"\n - Exit")
-
-
+#
+# Menu()
 
 
 

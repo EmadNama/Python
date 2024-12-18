@@ -15,5 +15,7 @@ class Queue:
             return self.stack1[0]
         else:
             return None
+    def size(self):
+        return len(self.stack1)
     def __repr__(self):
         return str(self.stack1)
