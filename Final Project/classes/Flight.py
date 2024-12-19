@@ -12,9 +12,9 @@ class Flight:
 
     def __repr__(self):
         return (f"Flight Information:\n"
-                f"Flight Number: {self.flight_number}\n"
-                f"Date: {self.day}/{self.month}\n"
-                f"Destination: {self.destination}\n"
-                f"Time: {self.hour}:00\n"
-                f"Max Passengers: {self.max_passengers}\n"
-                f"Price: ${self.price}")
+                f"- Flight Number: {self.flight_number}\n"
+                f"- Date: {self.day}/{self.month}\n"
+                f"- Destination: {self.destination}\n"
+                f"- Time: {self.hour}:00\n"
+                f"- Max Passengers: {self.max_passengers}\n"
+                f"- Price: ${self.price}")

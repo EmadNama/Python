@@ -8,6 +8,12 @@ class Airport:
     def AddCustomer(self, customer):
         self.customers.append(customer)
 
+    def AddFlight(self, flight):
+        self.flights.append(flight)
+
+    def AddEmployee(self, flight):
+        self.employees.append(flight)
+
     def __repr__(self):
         return (f"Airport Information:\n"
                 f"Airport Code: {self.code}\n"
