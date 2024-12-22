@@ -9,6 +9,7 @@ class Flight:
         self.price = price
         self.queue = queue
         self.suitcases_stack = suitcases_stack
+        self.overall_weight = 0
 
     def __repr__(self):
         return (f"Flight Information:\n"

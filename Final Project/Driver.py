@@ -12,18 +12,18 @@ from classes.Suitcase import Suitcase
 import time
 
 # Customers
-customer1 = Customer(name="Alice", age=25, id="C1001", is_vip=True)
-customer2 = Customer(name="Bob", age=40, id="C1002", is_vip=False)
-customer3 = Customer(name="Charlie", age=30, id="C1003", is_vip=True)
-customer4 = Customer(name="David", age=22, id="C1004", is_vip=False)
-customer5 = Customer(name="Eva", age=35, id="C1005", is_vip=True)
+customer1 = Customer(name="Alice", age=25, id="1", is_vip=True)
+customer2 = Customer(name="Bob", age=40, id="2", is_vip=False)
+customer3 = Customer(name="Charlie", age=30, id="3", is_vip=True)
+customer4 = Customer(name="David", age=22, id="4", is_vip=False)
+customer5 = Customer(name="Eva", age=35, id="5", is_vip=True)
 
 # Employees
-employee1 = Employee(name="Emily", id="E1001", age=35, hour_rate=20, workday=None)
-employee2 = Employee(name="Daniel", id="E1002", age=45, hour_rate=25, workday=None)
-employee3 = Employee(name="Sophia", id="E1003", age=28, hour_rate=22, workday=None)
-employee4 = Employee(name="James", id="E1004", age=50, hour_rate=30, workday=None)
-employee5 = Employee(name="Liam", id="E1005", age=40, hour_rate=24, workday=None)
+employee1 = Employee(name="Emily", id="E1001", age=35, hour_rate=20)
+employee2 = Employee(name="Daniel", id="E1002", age=45, hour_rate=25)
+employee3 = Employee(name="Sophia", id="E1003", age=28, hour_rate=22)
+employee4 = Employee(name="James", id="E1004", age=50, hour_rate=30)
+employee5 = Employee(name="Liam", id="E1005", age=40, hour_rate=24)
 
 # Work Days
 workday1 = WorkDay(day=15, month=12, work_hours=8)
@@ -90,20 +90,27 @@ def ChooseFlight(customer_id, budget):
                                 while not flight.suitcases_stack.isEmpty() and flight.suitcases_stack.top().is_vip:
                                     temp.push(flight.suitcases_stack.pop())
                                 temp.push(suitcase)
+                                flight.overall_weight += suitcase_weight
                                 while not flight.suitcases_stack.isEmpty():
                                     temp.push(flight.suitcases_stack.pop())
                                 flight.suitcases_stack = temp
                             else:
-                                flight.suitcases_stack.push(suitcase)
-                            print(f"Your suitcase (weight: {suitcase_weight} kg) has been added to the flight.")
+                                if (flight.max_passengers * 23) > (flight.overall_weight + suitcase_weight):
+                                    flight.suitcases_stack.push(suitcase)
+                                    flight.overall_weight += suitcase_weight
+                                    print(f"Your suitcase (weight: {suitcase_weight} kg) has been added to the flight.")
+                                else:
+                                    print(f"Your suitcase weight is beyond the limit.")
                             print(f"Checking in, Please wait...")
                             flight.queue.enqueue(cust)
+                            flight.price *= 1.02
                             time.sleep(2)
                             print("Checked in successfully, Returning to main menu..")
                             time.sleep(2)
                         elif has_suitcase == "no":
                             print(f"Checking in, Please wait...")
                             flight.queue.enqueue(cust)
+                            flight.price *= 1.02
                             time.sleep(2)
                             print("Checked in successfully, Returning to main menu..")
                             time.sleep(2)
@@ -119,20 +126,77 @@ def ChooseFlight(customer_id, budget):
         print(f"Customer with ID {customer_id} not found, Returning to the main menu... ")
         time.sleep(2)
 
+
+def AddWorkDay(employee_id):
+    emp_found = False
+    for emp in airport1.employees:
+        if emp.id == employee_id:
+            emp_found = True
+            workday_day = int(input("Put the day: "))
+            workday_month = int(input("Put the month: "))
+            workday_hours = int(input("Hours: "))
+            workday = WorkDay(workday_day, workday_month, workday_hours)
+            emp.workday.append(workday)
+            print("Adding Work Day, Please wait...")
+            time.sleep(2)
+            print(f"Successfully Added {workday_day}/{workday_month} with {workday_hours} Hours"
+                  f"To {emp.name}")
+            print("Returning to the main menu...")
+            time.sleep(2)
+
+    if emp_found == False:
+        print("Employee Not Found")
+        time.sleep(2)
+        print("Returning to the main menu....")
+        time.sleep(2)
+
+def EmployeeSalary(employee_id):
+    emp_found = False
+    for emp in airport1.employees:
+        if emp.id == employee_id:
+            emp_found = True
+            month = int(input("Month: "))
+            sum = 0
+            for workday in emp.workday:
+                if workday.month == month:
+                    sum += (workday.work_hours * emp.hour_rate)
+            print(sum)
+    if not emp_found:
+        print("Employee Not Found")
+        time.sleep(2)
+        print("Returning to the main menu....")
+        time.sleep(2)
+
+
+def FlightEnded(flight_id):
+    flight_found = False
+    for flight in airport1.flights:
+        if flight.id == flight_id:
+            flight_found = True
+            while not flight.suitcases_stack.isEmpty():
+                flight.suitcases_stack.pop()
+                time.sleep(2)
+    if not flight_found:
+        print("Flight Not Found")
+        time.sleep(2)
+        print("Returning to the main menu....")
+        time.sleep(2)
+
+
 def Main():
     while True:
-        print(f"\n{" "*8}Welcome to {airport1.code} Airport")
+        print(f"\n        Welcome to {airport1.code} Airport")
         print("=" * 40)
-        print(f"{" "*6}Please Choose an Operation:\n")
+        print(f"      Please Choose an Operation:\n")
 
         print("[1] - Add Flight")
         print("[2] - Add Customer")
         print("[3] - Add Employee")
         print("[4] - Offer Flight")
-        print("[5] - Update Flight")
-        print("[6] - Update Employee Work Hours")
+        print("[5] - Update Employee Work Hours")
+        print("[6] - View Employee Salary")
         print("[7] - View Employees List")
-        print("[8] - View Employee Salary")
+        print("[8] - Report Flight Landed")
         print("[9] - Exit")
 
         x = input("\nEnter the number of your choice (1-9): ")
@@ -206,7 +270,7 @@ def Main():
         elif x == "3":
             print("\nYou chose to Add Employee.")
             name = input("Enter Employee Name: ")
-            employee_id = input("Enter Employee ID (e.g., E1005): ")
+            employee_id = input("Enter Employee ID: ")
             age = int(input("Enter Employee Age: "))
             hour_rate = float(input("Enter Employee Hourly Rate: "))
             employee = Employee(
@@ -214,7 +278,6 @@ def Main():
                 id=employee_id,
                 age=age,
                 hour_rate=hour_rate,
-                workday=None
             )
             print("\nAdding Employee, Please wait...")
             time.sleep(2)
@@ -239,13 +302,21 @@ def Main():
             time.sleep(3)
 
         elif x == "5":
-            print("You chose to Offer Flight.")
-        elif x == "6":
             print("You chose to Update Employee Work Hours.")
+            id = str(input("Put Employee ID: "))
+            AddWorkDay(id)
+
+        elif x == "6":
+            print("You chose to View Employee Salary.")
+            id = str(input("Put Employee ID: "))
+            EmployeeSalary(id)
+
         elif x == "7":
-            print("You chose to View Workers List.")
+            print("You chose To View Employees List:")
+
         elif x == "8":
             print("You chose IDK. Let's figure it out together!")
+
         elif x == "9":
             print("Exiting. Have a great day!")
             break
@@ -253,10 +324,6 @@ def Main():
             print("Invalid option. Please choose a valid number between 1 and 9.")
 
 Main()
-
-
-
-
 
 
 

@@ -11,8 +11,8 @@ class Airport:
     def AddFlight(self, flight):
         self.flights.append(flight)
 
-    def AddEmployee(self, flight):
-        self.employees.append(flight)
+    def AddEmployee(self, employee):
+        self.employees.append(employee)
 
     def __repr__(self):
         return (f"Airport Information:\n"
