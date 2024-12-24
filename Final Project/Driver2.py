@@ -11,7 +11,6 @@ from classes.Flight import Flight
 from classes.Suitcase import Suitcase
 
 
-
 class Airport:
 
 
@@ -31,10 +30,9 @@ class Airport:
 
 
     def AddCustomer(self):
-
         name = input("Enter Customer Name: ")
-        age = int(input("Enter Customer Age: "))
         customer_id = input("Enter Customer ID: ")
+        age = input("Enter Customer Age: ")
         is_vip = input("Is the customer a VIP? (Yes/No): ").strip().lower()
         is_vip = True if is_vip == "yes" else False
 
@@ -46,31 +44,27 @@ class Airport:
         )
 
         print("\nAdding Customer, Please wait...")
-        time.sleep(2)
+        time.sleep(1)
         print(f"Checking Customer Information...")
-        time.sleep(2)
-        customer_exists = False
+        time.sleep(1)
         for c in self.customers:
             if c.id == customer.id:
-                customer_exists = True
-                print(f"\nCustomer {customer_id} already exists")
+                print(f"\nCustomer {customer_id} already exists\n")
+                time.sleep(1)
                 print("Returning to main menu...")
                 time.sleep(2)
-        if not customer_exists:
-            self.customers.append(customer)
-            print(f"\nCustomer {customer_id} Added Successfully to {self.code}\n")
-            time.sleep(2)
-            print(customer)
-            time.sleep(1)
-            print("\nReturning to main menu...")
-            time.sleep(2)
+            return
+        self.customers.append(customer)
+        print(f"\nCustomer {customer_id} Added Successfully to {self.code}")
+        time.sleep(1)
+        print("\nReturning to main menu...")
+        time.sleep(2)
+
 
     def AddFlight(self):
 
         flight_number = input("Enter Flight Number: ")
-
         destination = input("Enter Flight Destination: ")
-
         day = int(input("Enter the day of the flight (1-31): "))
         while not 1<=day<=31:
             print("Wrong Day, Only between 1 - 31")
@@ -85,7 +79,6 @@ class Airport:
         while not 1<=hour<=24:
             print("Wrong Hour, Only between 1 - 24")
             hour = int(input("Enter the hour of departure (1-24): "))
-
         max_passengers = int(input("Enter the maximum number of passengers: "))
         price = float(input("Enter the flight price: "))
 
@@ -102,31 +95,28 @@ class Airport:
         )
 
         print("\nAdding Flight, Please wait...")
-        time.sleep(2)
+        time.sleep(1)
         print("Checking Flight Information...")
-        time.sleep(2)
-        flight_exists = False
+        time.sleep(1)
         for f in self.flights:
             if f.flight_number == flight.flight_number:
-                flight_exists = True
                 print(f"\nFlight {flight_number} already exists")
-                print("Returning to main menu...")
+                time.sleep(1)
+                print("\nReturning to main menu...")
                 time.sleep(2)
-        if not flight_exists:
-            self.flights.append(flight)
-            print(f"\nFlight {flight_number} Added Successfully to {airport.code}\n")
-            time.sleep(2)
-            print(flight)
-            time.sleep(1)
-            print("\nReturning to main menu...")
-            time.sleep(2)
+                return
+        self.flights.append(flight)
+        print(f"\nFlight {flight_number} Added Successfully to {airport.code}")
+        time.sleep(1)
+        print("\nReturning to main menu...")
+        time.sleep(2)
 
 
     def AddEmployee(self):
 
         name = input("Enter Employee Name: ")
         employee_id = input("Enter Employee ID: ")
-        age = int(input("Enter Employee Age: "))
+        age = input("Enter Employee Age: ")
         hour_rate = float(input("Enter Employee Hourly Rate: "))
 
         employee = Employee(
@@ -137,24 +127,21 @@ class Airport:
         )
 
         print("\nAdding Employee, Please wait...")
-        time.sleep(2)
+        time.sleep(1)
         print(f"Checking Employee Information...")
-        time.sleep(2)
-        employee_exists = False
+        time.sleep(1)
         for c in self.employees:
             if c.id == employee.id:
-                employee_exists = True
                 print(f"\nEmployee {employee_id} already exists")
-                print("Returning to main menu...")
+                time.sleep(1)
+                print("\nReturning to main menu...")
                 time.sleep(2)
-        if not employee_exists:
-            self.employees.append(employee)
-            print(f"\nEmployee {employee_id} Added Successfully to {self.code}\n")
-            time.sleep(2)
-            print(employee)
-            time.sleep(1)
-            print("\nReturning to main menu...")
-            time.sleep(2)
+            return
+        self.employees.append(employee)
+        print(f"\nEmployee {employee_id} Added Successfully to {self.code}")
+        time.sleep(1)
+        print("\nReturning to main menu...")
+        time.sleep(2)
 
 
     def ChooseFlight(self):
@@ -202,23 +189,20 @@ class Airport:
                                         while not temp.isEmpty():
                                             flight.suitcases_stack.push(temp.pop())
                                         flight.overall_weight += suitcase_weight
-                                        print(f"Your suitcase (weight: {suitcase_weight} kg) has been added to the flight.")
                                     else:
-                                        print(f"Your suitcase weight is beyond the limit.")
-
-
-                                print(f"Checking in, Please wait...")
+                                        print(f"\nYour suitcase weight is beyond the limit.")
+                                print(f"\nChecking in, Please wait...")
                                 flight.queue.enqueue(cust)
                                 flight.price *= 1.02
                                 time.sleep(2)
-                                print("Checked in successfully, Returning to main menu..")
+                                print("\nChecked in successfully, Returning to main menu..")
                                 time.sleep(2)
                             elif has_suitcase == "no":
-                                print(f"Checking in, Please wait...")
+                                print(f"\nChecking in, Please wait...")
                                 flight.queue.enqueue(cust)
                                 flight.price *= 1.02
                                 time.sleep(2)
-                                print("Checked in successfully, Returning to main menu..")
+                                print("\nChecked in successfully, Returning to main menu..")
                                 time.sleep(2)
                     if not flight_found:
                         print("Flight not found, Returning to the main menu...")
@@ -234,48 +218,49 @@ class Airport:
 
 
     def AddWorkDay(self, employee_id):
-        emp_found = False
+
         for emp in self.employees:
             if emp.id == employee_id:
-                emp_found = True
-                workday_day = int(input("Put the day: "))
-                workday_month = int(input("Put the month: "))
-                workday_hours = int(input("Hours: "))
+                workday_day = input("Which Day? : ")
+                workday_month = input("Which Month?: ")
+                workday_hours = int(input("How Many Hours?: "))
                 workday = WorkDay(workday_day, workday_month, workday_hours)
                 emp.workdays.append(workday)
-                print("Adding Work Day, Please wait...")
-                time.sleep(2)
-                print(f"Successfully Added {workday_day}/{workday_month} with {workday_hours} Hours "
+                print("\nAdding Work Day, Please wait...")
+                time.sleep(1)
+                print(f"\nSuccessfully Added {workday_day}/{workday_month} with {workday_hours} Hours "
                       f"To {emp.name}")
-                print("Returning to the main menu...")
+                time.sleep(1)
+                print("\nReturning to the main menu...")
                 time.sleep(2)
+                return
+        print("\nEmployee Not Found")
+        time.sleep(1)
+        print("\nReturning to the main menu....")
+        time.sleep(2)
 
-        if emp_found == False:
-            print("Employee Not Found")
-            time.sleep(2)
-            print("Returning to the main menu....")
-            time.sleep(2)
 
+    def EmployeeSalary(self, employee_id, month):
 
-    def EmployeeSalary(self, employee_id):
-        emp_found = False
+        employee = None
         for emp in self.employees:
             if emp.id == employee_id:
-                emp_found = True
-                month = int(input("Month: "))
-                sum = 0
-                for workday in emp.workdays:
+                employee = emp
+
+        if employee:
+            sum = 0
+            for workday in employee.workdays:
                     if workday.month == month:
-                        sum += (workday.work_hours * emp.hour_rate)
-                print(sum)
-        if not emp_found:
-            print("Employee Not Found")
+                        sum += (workday.work_hours * employee.hour_rate)
+                        print(f"\n{employee.name} has earned a total of {sum} in that month")
+                        time.sleep(1)
+                        print("\nReturning to the main menu....")
+                        time.sleep(2)
+        else:
+            print("\nEmployee Not Found")
+            time.sleep(1)
+            print("\nReturning to the main menu....")
             time.sleep(2)
-            print("Returning to the main menu....")
-            time.sleep(2)
-
-
-    # def ViewEmployees(self):
 
 
     def FlightEnded(self):
@@ -304,7 +289,7 @@ class Airport:
             print("[2] - Add Customer")
             print("[3] - Add Employee")
             print("[4] - Offer Flight")
-            print("[5] - Update Employee Work Hours")
+            print("[5] - Add A Work Day For Employee")
             print("[6] - View Employee Salary")
             print("[7] - View Employees List")
             print("[8] - Report Flight Landed")
@@ -313,36 +298,37 @@ class Airport:
             x = input("\nEnter the number of your choice (1-9): ")
 
             if x == "1":
-                print("\nYou chose to Add a Flight.\n")
+                print("\nYou chose to add a flight.\n")
                 self.AddFlight()
 
             elif x == "2":
-                print("\nYou chose to Add Customer.\n")
+                print("\nYou chose to add Customer.\n")
                 self.AddCustomer()
 
             elif x == "3":
-                print("\nYou chose to Add Employee.\n")
+                print("\nYou chose to add employee.\n")
                 self.AddEmployee()
 
             elif x == "4":
-                print("\nYou chose to Offer Flight.\n")
+                print("\nYou chose to offer flight.\n")
                 self.ChooseFlight()
 
             elif x == "5":
-                print("\nYou chose to Update Employee Work Hours.\n")
+                print("\nYou chose to add a work day for an employee.\n")
                 id = str(input("Put Employee ID: "))
                 self.AddWorkDay(id)
 
             elif x == "6":
-                print("\nYou chose to View Employee Salary.\n")
-                id = str(input("Put Employee ID: "))
-                self.EmployeeSalary(id)
+                print("\nYou chose to view employee salary.\n")
+                id = input("Put Employee ID: ")
+                month = input("For which month?: ")
+                self.EmployeeSalary(id, month)
 
             elif x == "7":
-                print("\nYou chose to View Employees List:\n")
+                print("\nYou chose to view employees list:\n")
 
             elif x == "8":
-                print("\nYou chose to report Flight landed\n")
+                print("\nYou chose to report flight landed\n")
                 self.FlightEnded()
 
             elif x == "9":
@@ -351,13 +337,22 @@ class Airport:
             else:
                 print("Invalid option. Please choose a valid number between 1 and 9.")
 
+flight = Flight("F1", "Israel", "12", "12", "12", 200, 200, Queue(), Stack())
+
+customer = Customer("VIP 4", "12", "9", True)
+customer2 = Customer("Normal 5", "12", "8", False)
+customer3 = Customer("Vip 3", "12", "7", True)
+customer4 = Customer("Normal 4", "12", "6", False)
+customer5 = Customer("Normal 3", "12", "5", False)
+customer6 = Customer("Vip 2", "12", "4", True)
+customer7 = Customer("Normal 2", "12", "3", False)
+customer8 = Customer("Normal 1", "12", "2", False)
+customer9 = Customer("Vip 1", "12", "1", True)
 
 airport = Airport(code="JFK",
-                   flights=[],
-                   customers=[],
+                   flights=[flight],
+                   customers=[customer, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9],
                    employees=[])
 
+
 airport.Main()
-
-
-
