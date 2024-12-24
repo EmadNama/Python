@@ -186,23 +186,27 @@ class Airport:
                             if has_suitcase == "yes":
                                 suitcase_weight = float(input("Enter the weight of your suitcase (in kg): "))
                                 suitcase = Suitcase(owner=cust, weight=suitcase_weight)
+                                temp = Stack()
                                 if cust.is_vip:
-                                    temp = Stack()
                                     while not flight.suitcases_stack.isEmpty() and flight.suitcases_stack.top().owner.is_vip:
                                         temp.push(flight.suitcases_stack.pop())
                                     temp.push(suitcase)
+                                    while not temp.isEmpty():
+                                        flight.suitcases_stack.push(temp.pop())
                                     flight.overall_weight += suitcase_weight
-                                    while not flight.suitcases_stack.isEmpty():
-                                        temp.push(flight.suitcases_stack.pop())
-                                    flight.suitcases_stack = temp
                                 else:
                                     if (flight.max_passengers * 23) > (flight.overall_weight + suitcase_weight):
+                                        while not flight.suitcases_stack.isEmpty():
+                                            temp.push(flight.suitcases_stack.pop())
                                         flight.suitcases_stack.push(suitcase)
+                                        while not temp.isEmpty():
+                                            flight.suitcases_stack.push(temp.pop())
                                         flight.overall_weight += suitcase_weight
-                                        print(
-                                            f"Your suitcase (weight: {suitcase_weight} kg) has been added to the flight.")
+                                        print(f"Your suitcase (weight: {suitcase_weight} kg) has been added to the flight.")
                                     else:
                                         print(f"Your suitcase weight is beyond the limit.")
+
+
                                 print(f"Checking in, Please wait...")
                                 flight.queue.enqueue(cust)
                                 flight.price *= 1.02
@@ -252,6 +256,7 @@ class Airport:
             print("Returning to the main menu....")
             time.sleep(2)
 
+
     def EmployeeSalary(self, employee_id):
         emp_found = False
         for emp in self.employees:
@@ -270,6 +275,9 @@ class Airport:
             time.sleep(2)
 
 
+    # def ViewEmployees(self):
+
+
     def FlightEnded(self):
         flight_id = input("Flight Number: ")
         flight_found = False
@@ -286,81 +294,70 @@ class Airport:
             print("Returning to the main menu....")
             time.sleep(2)
 
+    def Main(self):
+        while True:
+            print(f"\n        Welcome to {self.code} Airport")
+            print("=" * 40)
+            print(f"      Please Choose an Operation:\n")
 
-def Main(airport):
-    while True:
-        print(f"\n        Welcome to {airport.code} Airport")
-        print("=" * 40)
-        print(f"      Please Choose an Operation:\n")
+            print("[1] - Add Flight")
+            print("[2] - Add Customer")
+            print("[3] - Add Employee")
+            print("[4] - Offer Flight")
+            print("[5] - Update Employee Work Hours")
+            print("[6] - View Employee Salary")
+            print("[7] - View Employees List")
+            print("[8] - Report Flight Landed")
+            print("[9] - Exit")
 
-        print("[1] - Add Flight")
-        print("[2] - Add Customer")
-        print("[3] - Add Employee")
-        print("[4] - Offer Flight")
-        print("[5] - Update Employee Work Hours")
-        print("[6] - View Employee Salary")
-        print("[7] - View Employees List")
-        print("[8] - Report Flight Landed")
-        print("[9] - Exit")
+            x = input("\nEnter the number of your choice (1-9): ")
 
-        x = input("\nEnter the number of your choice (1-9): ")
+            if x == "1":
+                print("\nYou chose to Add a Flight.\n")
+                self.AddFlight()
 
-        if x == "1":
-            print("\nYou chose to Add a Flight.\n")
-            airport.AddFlight()
+            elif x == "2":
+                print("\nYou chose to Add Customer.\n")
+                self.AddCustomer()
 
-        elif x == "2":
-            print("\nYou chose to Add Customer.\n")
-            airport.AddCustomer()
+            elif x == "3":
+                print("\nYou chose to Add Employee.\n")
+                self.AddEmployee()
 
-        elif x == "3":
-            print("\nYou chose to Add Employee.\n")
-            airport.AddEmployee()
+            elif x == "4":
+                print("\nYou chose to Offer Flight.\n")
+                self.ChooseFlight()
 
-        elif x == "4":
-            print("\nYou chose to Offer Flight.\n")
-            airport.ChooseFlight()
+            elif x == "5":
+                print("\nYou chose to Update Employee Work Hours.\n")
+                id = str(input("Put Employee ID: "))
+                self.AddWorkDay(id)
 
-        elif x == "5":
-            print("\nYou chose to Update Employee Work Hours.\n")
-            id = str(input("Put Employee ID: "))
-            airport.AddWorkDay(id)
+            elif x == "6":
+                print("\nYou chose to View Employee Salary.\n")
+                id = str(input("Put Employee ID: "))
+                self.EmployeeSalary(id)
 
-        elif x == "6":
-            print("\nYou chose to View Employee Salary.\n")
-            id = str(input("Put Employee ID: "))
-            airport.EmployeeSalary(id)
+            elif x == "7":
+                print("\nYou chose to View Employees List:\n")
 
-        elif x == "7":
-            print("\nYou chose to View Employees List:\n")
-            print(airport.employees)
+            elif x == "8":
+                print("\nYou chose to report Flight landed\n")
+                self.FlightEnded()
 
-        elif x == "8":
-            print("\nYou chose to report Flight landed\n")
-            airport.FlightEnded()
-
-        elif x == "9":
-            print("\nExiting. Have a great day!")
-            break
-        else:
-            print("Invalid option. Please choose a valid number between 1 and 9.")
-
-customer1 = Customer("Emad", 18, "C1", True)
-customer2 = Customer("Yarin", 26, "C2", True)
-customer3 = Customer("Avishay", 66, "C3", False)
-customer4 = Customer("Yousef", 66, "C4", False)
-customer5 = Customer("Atar", 66, "C5", True)
-customer6 = Customer("Mostafa", 66, "C6", False)
-customer7 = Customer("Mohammed", 66, "C7", False)
-
-flight1 = Flight("F1", "Duba", 12, 12, 12, 200, 500, Queue(), Stack())
+            elif x == "9":
+                print("\nExiting. Have a great day!")
+                break
+            else:
+                print("Invalid option. Please choose a valid number between 1 and 9.")
 
 
 airport = Airport(code="JFK",
-                   flights=[flight1],
-                   customers=[customer1, customer2, customer3, customer4, customer5, customer6, customer7],
+                   flights=[],
+                   customers=[],
                    employees=[])
-Main(airport)
+
+airport.Main()
 
 
 
