@@ -27,12 +27,9 @@ class Airport:
         age = input("Enter Customer Age: ")
         is_vip = input("Is the customer a VIP? (Yes/No): ").strip().lower()
         is_vip = True if is_vip == "yes" else False
-        customer = Customer(
-            name=name,
-            age=age,
-            id=customer_id,
-            is_vip=is_vip
-        )
+
+        customer = Customer(name, age, customer_id, is_vip)
+
         print("\nAdding Customer, Please wait...")
         time.sleep(1)
         print(f"Checking Customer Information...")
@@ -43,7 +40,7 @@ class Airport:
                 time.sleep(1)
                 print("Returning to main menu...")
                 time.sleep(2)
-            return
+                return
         self.customers.append(customer)
         print(f"\nCustomer {customer_id} Added Successfully to {self.code}")
         time.sleep(1)
@@ -54,33 +51,12 @@ class Airport:
         flight_number = input("Enter Flight Number: ")
         destination = input("Enter Flight Destination: ")
         day = int(input("Enter the day of the flight (1-31): "))
-        while not 1<=day<=31:
-            print("Wrong Day, Only between 1 - 31")
-            day = int(input("Enter the day of the flight (1-31): "))
-
         month = int(input("Enter the month of the flight (1-12): "))
-        while not 1<=month<=12:
-            print("Wrong Month, Only between 1 - 12")
-            month = int(input("Enter the month of the flight (1-12): "))
-
         hour = int(input("Enter the hour of departure (1-24): "))
-        while not 1<=hour<=24:
-            print("Wrong Hour, Only between 1 - 24")
-            hour = int(input("Enter the hour of departure (1-24): "))
         max_passengers = int(input("Enter the maximum number of passengers: "))
         price = float(input("Enter the flight price: "))
 
-        flight = Flight(
-            flight_number=flight_number,
-            destination=destination,
-            day=day,
-            month=month,
-            hour=hour,
-            max_passengers=max_passengers,
-            price=price,
-            queue=Queue(),
-            suitcases_stack=Stack()
-        )
+        flight = Flight(flight_number, destination, day, month, hour, max_passengers, price, Queue(), Stack())
 
         print("\nAdding Flight, Please wait...")
         time.sleep(1)
@@ -106,12 +82,7 @@ class Airport:
         age = input("Enter Employee Age: ")
         hour_rate = float(input("Enter Employee Hourly Rate: "))
 
-        employee = Employee(
-            name=name,
-            id=employee_id,
-            age=age,
-            hour_rate=hour_rate,
-        )
+        employee = Employee(name, employee_id, age, hour_rate)
 
         print("\nAdding Employee, Please wait...")
         time.sleep(1)
@@ -123,7 +94,7 @@ class Airport:
                 time.sleep(1)
                 print("\nReturning to main menu...")
                 time.sleep(2)
-            return
+                return
         self.employees.append(employee)
         print(f"\nEmployee {employee_id} Added Successfully to {self.code}")
         time.sleep(1)
@@ -228,13 +199,19 @@ class Airport:
                 employee = emp
         if employee:
             sum = 0
-            for workday in employee.workdays:
+            if employee.workdays:
+                for workday in employee.workdays:
                     if workday.month == month:
                         sum += (workday.work_hours * employee.hour_rate)
-                        print(f"\n{employee.name} has earned a total of {sum} in that month")
-                        time.sleep(1)
-                        print("\nReturning to the main menu....")
-                        time.sleep(2)
+                print(f"\n{employee.name} has earned a total of {sum} in that month")
+                time.sleep(1)
+                print("\nReturning to the main menu....")
+                time.sleep(2)
+            else:
+                print(f"\n{employee.name} hasn't worked in that month")
+                time.sleep(1)
+                print("\nReturning to the main menu....")
+                time.sleep(2)
         else:
             print("\nEmployee Not Found")
             time.sleep(1)
@@ -254,10 +231,19 @@ class Airport:
         for emp in self.employees:
             temp.append((emp.name, self.EmployeeSalary2(emp, month)))
         self.BubbleSort(temp)
-        print(f"{self.code}'s Employees Salaries for month {month}: ")
-        while not len(temp) == 0:
-            highest = temp.pop(0)
-            print(f"{highest[0]}, {highest[1]}")
+        if not temp:
+            print(f"\nNo Employees Found!")
+            time.sleep(1)
+            print("\nReturning to the main menu....")
+            time.sleep(2)
+        else:
+            print(f"\n{self.code}'s Employees Salaries for month {month}:\n")
+            while not len(temp) == 0:
+                highest = temp.pop(0)
+                print(f"{highest[0]}, {highest[1]}")
+            time.sleep(1)
+            print("\nReturning to the main menu....")
+            time.sleep(2)
 
     def BubbleSort(self, lst):
         n = len(lst)
@@ -277,10 +263,11 @@ class Airport:
                 while not flight.suitcases_stack.isEmpty():
                     print(flight.suitcases_stack.pop())
                     time.sleep(2)
+                self.flights.remove(flight)
         if not flight_found:
-            print("Flight Not Found")
-            time.sleep(2)
-            print("Returning to the main menu....")
+            print("\nFlight Not Found")
+            time.sleep(1)
+            print("\nReturning to the main menu....")
             time.sleep(2)
 
     def Main(self):
@@ -342,8 +329,5 @@ class Airport:
             else:
                 print("Invalid option. Please choose a valid number between 1 and 9.")
 
-airport = Airport(code="JFK",
-                   flights=[],
-                   customers=[],
-                   employees=[])
+airport = Airport("JFK", [], [], [])
 airport.Main()
