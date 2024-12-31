@@ -1,25 +1,18 @@
 import time
-
 from assets.Stack import Stack
 from assets.Queue import Queue
-
 from classes.Customer import Customer
 from classes.Employee import Employee
 from classes.WorkDay import WorkDay
-
 from classes.Flight import Flight
 from classes.Suitcase import Suitcase
 
-
 class Airport:
-
-
     def __init__(self, code, flights, customers, employees):
         self.code = code
         self.flights = flights
         self.customers = customers
         self.employees = employees
-
 
     def __repr__(self):
         return (f"Airport Information:\n"
@@ -28,21 +21,18 @@ class Airport:
                 f"Employees: {self.employees}\n"
                 f"Customers: {self.customers}")
 
-
     def AddCustomer(self):
         name = input("Enter Customer Name: ")
         customer_id = input("Enter Customer ID: ")
         age = input("Enter Customer Age: ")
         is_vip = input("Is the customer a VIP? (Yes/No): ").strip().lower()
         is_vip = True if is_vip == "yes" else False
-
         customer = Customer(
             name=name,
             age=age,
             id=customer_id,
             is_vip=is_vip
         )
-
         print("\nAdding Customer, Please wait...")
         time.sleep(1)
         print(f"Checking Customer Information...")
@@ -60,9 +50,7 @@ class Airport:
         print("\nReturning to main menu...")
         time.sleep(2)
 
-
     def AddFlight(self):
-
         flight_number = input("Enter Flight Number: ")
         destination = input("Enter Flight Destination: ")
         day = int(input("Enter the day of the flight (1-31): "))
@@ -111,7 +99,6 @@ class Airport:
         print("\nReturning to main menu...")
         time.sleep(2)
 
-
     def AddEmployee(self):
 
         name = input("Enter Employee Name: ")
@@ -143,17 +130,13 @@ class Airport:
         print("\nReturning to main menu...")
         time.sleep(2)
 
-
     def ChooseFlight(self):
-
         customer_id = input("Enter the Customer ID: ")
         budget = float(input("Enter the Customer's Budget: "))
-
         customer_found = False
         for cust in self.customers:
             if cust.id == customer_id:
                 customer_found = True
-
                 available_flights = [flight for flight in self.flights
                                      if flight.price <= budget
                                      and flight.queue.size() < flight.max_passengers]
@@ -216,7 +199,6 @@ class Airport:
             print(f"Customer with ID {customer_id} not found, Returning to the main menu... ")
             time.sleep(2)
 
-
     def AddWorkDay(self, employee_id):
 
         for emp in self.employees:
@@ -239,14 +221,11 @@ class Airport:
         print("\nReturning to the main menu....")
         time.sleep(2)
 
-
     def EmployeeSalary(self, employee_id, month):
-
         employee = None
         for emp in self.employees:
             if emp.id == employee_id:
                 employee = emp
-
         if employee:
             sum = 0
             for workday in employee.workdays:
@@ -262,6 +241,31 @@ class Airport:
             print("\nReturning to the main menu....")
             time.sleep(2)
 
+    def EmployeeSalary2(self, employee, month):
+            sum = 0
+            for workday in employee.workdays:
+                    if workday.month == month:
+                        sum += (workday.work_hours * employee.hour_rate)
+            return sum
+
+    def ViewEmployees(self):
+        month = input("For which month?: ")
+        temp = []
+        for emp in self.employees:
+            temp.append((emp.name, self.EmployeeSalary2(emp, month)))
+        self.BubbleSort(temp)
+        print(f"{self.code}'s Employees Salaries for month {month}: ")
+        while not len(temp) == 0:
+            highest = temp.pop(0)
+            print(f"{highest[0]}, {highest[1]}")
+
+    def BubbleSort(self, lst):
+        n = len(lst)
+        for i in range(n - 1):
+            for j in range(n - 1 - i):
+                if lst[j][1] < lst[j + 1][1]:
+                    lst[j], lst[j + 1] = lst[j + 1], lst[j]
+        return lst
 
     def FlightEnded(self):
         flight_id = input("Flight Number: ")
@@ -326,6 +330,7 @@ class Airport:
 
             elif x == "7":
                 print("\nYou chose to view employees list:\n")
+                self.ViewEmployees()
 
             elif x == "8":
                 print("\nYou chose to report flight landed\n")
@@ -337,22 +342,8 @@ class Airport:
             else:
                 print("Invalid option. Please choose a valid number between 1 and 9.")
 
-flight = Flight("F1", "Israel", "12", "12", "12", 200, 200, Queue(), Stack())
-
-customer = Customer("VIP 4", "12", "9", True)
-customer2 = Customer("Normal 5", "12", "8", False)
-customer3 = Customer("Vip 3", "12", "7", True)
-customer4 = Customer("Normal 4", "12", "6", False)
-customer5 = Customer("Normal 3", "12", "5", False)
-customer6 = Customer("Vip 2", "12", "4", True)
-customer7 = Customer("Normal 2", "12", "3", False)
-customer8 = Customer("Normal 1", "12", "2", False)
-customer9 = Customer("Vip 1", "12", "1", True)
-
 airport = Airport(code="JFK",
-                   flights=[flight],
-                   customers=[customer, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9],
+                   flights=[],
+                   customers=[],
                    employees=[])
-
-
 airport.Main()
